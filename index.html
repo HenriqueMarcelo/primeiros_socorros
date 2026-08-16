@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#991b1b">
+  <meta name="description" content="Orientações rápidas de primeiros socorros para o ambiente escolar.">
+  <title>Socorro na Escola</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#17211e',
+            paper: '#f7f5ef',
+            rescue: '#a52323',
+            forest: '#214d3f'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Manrope', 'sans-serif']
+          },
+          boxShadow: {
+            card: '0 10px 30px rgba(23, 33, 30, 0.07)'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="min-h-screen bg-paper font-sans text-ink antialiased">
+  <header class="overflow-hidden bg-forest text-white">
+    <div class="mx-auto max-w-5xl px-5 pb-8 pt-6 sm:px-8 sm:pb-10 sm:pt-8">
+      <div class="mb-10 flex items-center justify-between gap-4">
+        <a href="#conteudo" class="flex items-center gap-3" aria-label="Ir para a lista de situações">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-2xl font-bold text-rescue shadow-sm" aria-hidden="true">+</span>
+          <span class="font-display text-sm font-extrabold uppercase tracking-[0.16em] text-white/90">Socorro na Escola</span>
+        </a>
+        <a href="tel:192" class="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-rescue shadow-sm transition hover:bg-red-50 focus:outline-none focus:ring-4 focus:ring-white/30" aria-label="Ligar para o SAMU no número 192">
+          <span class="h-2.5 w-2.5 animate-pulse rounded-full bg-rescue" aria-hidden="true"></span>
+          SAMU 192
+        </a>
+      </div>
+
+      <div class="max-w-2xl">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-emerald-200">Guia rápido para educadores</p>
+        <h1 class="font-display text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl">Calma primeiro.<br>O próximo passo está aqui.</h1>
+        <p class="mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">Identifique a situação, proteja o aluno e peça ajuda. Estas orientações servem para os primeiros minutos, até a chegada de atendimento especializado.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="mx-auto max-w-5xl px-4 pb-28 sm:px-8">
+    <section class="relative -mt-4 rounded-2xl border border-red-100 bg-white p-4 shadow-card sm:-mt-5 sm:p-5" aria-label="Aviso de emergência">
+      <div class="flex gap-3">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-red-50 font-bold text-rescue" aria-hidden="true">!</span>
+        <div>
+          <h2 class="font-display text-sm font-extrabold text-rescue">Há risco imediato?</h2>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600">Se a pessoa não responde, não respira normalmente, tem falta de ar intensa ou sangramento grave, ligue <strong class="text-ink">192</strong> agora. Coloque o celular no viva-voz e siga as instruções do atendente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-5 pt-8" aria-label="Busca e filtros">
+      <label for="busca" class="sr-only">Buscar uma situação</label>
+      <div class="relative">
+        <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400" aria-hidden="true">⌕</span>
+        <input id="busca" type="search" placeholder="Buscar: engasgo, queda, sangramento..." autocomplete="off" class="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-base shadow-sm outline-none transition placeholder:text-slate-400 focus:border-forest focus:ring-4 focus:ring-emerald-900/10">
+      </div>
+      <div class="hide-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Filtrar por categoria">
+        <button class="filter-chip is-active" type="button" data-filter="todos">Todos</button>
+        <button class="filter-chip" type="button" data-filter="respiratorio">Respiração</button>
+        <button class="filter-chip" type="button" data-filter="neurologico">Neurológico</button>
+        <button class="filter-chip" type="button" data-filter="trauma">Traumas</button>
+        <button class="filter-chip" type="button" data-filter="sangramento">Sangramentos</button>
+      </div>
+    </section>
+
+    <div class="mb-4 flex items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Situações comuns</p>
+        <h2 class="font-display text-2xl font-extrabold tracking-tight">O que aconteceu?</h2>
+      </div>
+      <p id="contador" class="text-sm font-medium text-slate-500" aria-live="polite">8 situações</p>
+    </div>
+
+    <div id="lista-situacoes" class="grid gap-4 md:grid-cols-2">
+      <article class="situation-card" data-category="respiratorio" data-search="engasgo crianca heimlich sufocamento">
+        <div class="card-accent bg-amber-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-amber-50 text-amber-800">Respiração</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Engasgo em crianças</h3>
+            </div>
+            <span class="card-number">01</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Se a criança tosse e fala, incentive a tosse. Se não consegue falar, tossir ou respirar, peça para alguém ligar 192 e faça <strong class="text-ink">5 golpes firmes entre as escápulas</strong>, alternando com <strong class="text-ink">5 compressões abdominais</strong>. Repita até desobstruir ou ela perder a resposta.</p>
+          <div class="warning-note"><strong>Atenção:</strong> em bebê menor de 1 ano, use 5 golpes nas costas e 5 compressões no peito — nunca compressões abdominais. Não tente retirar o objeto às cegas.</div>
+          <a class="video-link" href="https://youtube.com/shorts/VqHOpN6NfM4?is=zVvhombWAhDVf7GJ" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre engasgo em crianças no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="neurologico" data-search="convulsao crise epilepsia desmaio">
+        <div class="card-accent bg-violet-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-violet-50 text-violet-800">Neurológico</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Convulsão</h3>
+            </div>
+            <span class="card-number">02</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Marque o tempo, afaste objetos e proteja a cabeça com algo macio. Não segure os movimentos e <strong class="text-ink">não coloque nada na boca</strong>. Quando os abalos pararem, se estiver respirando, vire a pessoa de lado e permaneça com ela.</p>
+          <div class="warning-note"><strong>Ligue 192:</strong> se durar 5 minutos ou mais, repetir sem recuperação, for a primeira crise, ocorrer na água, houver lesão, gestação ou dificuldade para respirar.</div>
+          <a class="video-link" href="https://youtube.com/shorts/oOCCrnibt-I?is=saq6jVgvw_BUh8fQ" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre convulsão no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="trauma" data-search="torcao entorse contusao tornozelo">
+        <div class="card-accent bg-sky-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-sky-50 text-sky-800">Trauma</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Torção ou entorse</h3>
+            </div>
+            <span class="card-number">03</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Interrompa a atividade e evite apoiar o membro. Aplique gelo envolvido em pano por até 20 minutos, faça compressão leve se souber e mantenha elevado. Nunca massageie nem force a articulação nas primeiras horas.</p>
+          <div class="warning-note"><strong>Procure avaliação:</strong> se houver deformidade, dor intensa, dormência, mudança de cor ou incapacidade de apoiar/movimentar.</div>
+          <a class="video-link" href="https://youtu.be/bln4sH5ECSE?is=K_ROiQRvBj-6BmzO" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre torção no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="trauma" data-search="fratura osso quebrado imobilizacao">
+        <div class="card-accent bg-orange-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-orange-50 text-orange-800">Trauma</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Suspeita de fratura</h3>
+            </div>
+            <span class="card-number">04</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Mantenha a parte machucada imóvel e na posição encontrada. Não tente alinhar o osso nem testar o movimento. Apoie com roupas dobradas; se houver ferida, cubra com gaze ou pano limpo, sem pressionar osso exposto.</p>
+          <div class="warning-note"><strong>Ligue 192:</strong> em fratura exposta, grande deformidade, sangramento importante ou suspeita de lesão na cabeça, pescoço, coluna, quadril ou coxa. Não dê comida ou bebida.</div>
+          <a class="video-link" href="https://youtu.be/rBuTBSTLyvU?is=dWHHqt0venggBsi8" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre fratura no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="respiratorio" data-search="engasgo adulto heimlich sufocamento">
+        <div class="card-accent bg-amber-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-amber-50 text-amber-800">Respiração</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Engasgo em adultos</h3>
+            </div>
+            <span class="card-number">05</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Se a pessoa tosse e fala, incentive a tosse. Na obstrução grave, ligue 192 e alterne <strong class="text-ink">5 golpes firmes nas costas</strong> com <strong class="text-ink">5 compressões abdominais</strong>. Se perder a resposta, coloque-a no chão e inicie a RCP orientada pelo 192.</p>
+          <div class="warning-note"><strong>Não faça varredura com o dedo.</strong> Em gestante avançada ou quando não for possível abraçar o abdômen, as compressões devem ser no peito.</div>
+          <a class="video-link" href="https://youtu.be/C2c0BIJygYI?is=3TwxMHpW6PolG8ZD" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre engasgo em adultos no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="sangramento" data-search="hemorragia corte sangue ferimento">
+        <div class="card-accent bg-red-600"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-red-50 text-red-800">Sangramento</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Hemorragia</h3>
+            </div>
+            <span class="card-number">06</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Use luvas se disponíveis. Deite a pessoa e pressione o local com firmeza, usando gaze ou pano limpo, de forma contínua. Se encharcar, coloque mais material por cima sem retirar o primeiro. Mantenha a pessoa aquecida.</p>
+          <div class="warning-note"><strong>Ligue 192:</strong> para sangramento intenso ou que não para. Não retire objeto encravado; pressione ao redor. Torniquete somente em hemorragia grave de braço/perna e com treinamento ou orientação do 192.</div>
+          <a class="video-link" href="https://youtu.be/5ZkXniOdd_k?is=pMcN8YaFFQvbt5S7" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre hemorragia no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="sangramento" data-search="sangramento nasal nariz epistaxe">
+        <div class="card-accent bg-rose-400"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-rose-50 text-rose-800">Sangramento</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Sangramento nasal</h3>
+            </div>
+            <span class="card-number">07</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Sente a pessoa, incline a cabeça levemente para a frente e aperte a parte macia do nariz, logo acima das narinas, por <strong class="text-ink">15 minutos contínuos</strong>. Oriente a respirar pela boca. Não incline a cabeça para trás e não coloque papel dentro do nariz.</p>
+          <div class="warning-note"><strong>Procure atendimento:</strong> se não parar após 15 minutos, for muito intenso, causar tontura ou começar depois de uma pancada forte na cabeça/rosto.</div>
+          <a class="video-link" href="https://youtu.be/0LjVVK98RaE?is=dneDH7OZwDGN1zdO" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre sangramento nasal no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="situation-card" data-category="trauma" data-search="queda tombo cabeca traumatismo">
+        <div class="card-accent bg-teal-500"></div>
+        <div class="p-5 sm:p-6">
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <span class="category-label bg-teal-50 text-teal-800">Trauma</span>
+              <h3 class="mt-3 font-display text-xl font-extrabold">Quedas</h3>
+            </div>
+            <span class="card-number">08</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-600">Garanta que o local esteja seguro. Pergunte onde dói e observe resposta e respiração. Não levante nem mova a pessoa se houver dor forte, deformidade ou suspeita de lesão na cabeça, pescoço ou coluna. Em lesão leve, aplique gelo envolvido em pano.</p>
+          <div class="warning-note"><strong>Ligue 192:</strong> em desmaio, confusão ou sonolência crescente, vômitos repetidos, convulsão, falta de ar, sangramento importante, fraqueza, dor intensa ou queda de grande altura.</div>
+          <a class="video-link" href="https://youtube.com/watch?v=vy0625pA4hg&feature=shared" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo sobre quedas no YouTube">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Ver demonstração
+            <span class="ml-auto" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div id="sem-resultados" class="hidden rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
+      <p class="font-display text-lg font-extrabold">Situação não encontrada</p>
+      <p class="mt-2 text-sm text-slate-500">Tente outro termo ou ligue 192 em caso de urgência.</p>
+    </div>
+
+    <section class="mt-10 rounded-3xl bg-[#e9eee9] p-6 sm:p-8" aria-labelledby="limites-titulo">
+      <p class="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-forest/60">Importante</p>
+      <h2 id="limites-titulo" class="font-display text-xl font-extrabold text-forest">Este guia não substitui treinamento.</h2>
+      <p class="mt-3 text-sm leading-relaxed text-slate-600">Primeiros socorros reduzem riscos até a ajuda chegar. Mantenha a equipe capacitada, o plano de emergência da escola atualizado e os contatos dos responsáveis acessíveis.</p>
+      <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-forest/75">
+        <a class="underline decoration-forest/25 underline-offset-4 hover:decoration-forest" href="https://www.gov.br/saude/pt-br/composicao/saes/samu-192" target="_blank" rel="noopener noreferrer">Ministério da Saúde — SAMU 192</a>
+        <a class="underline decoration-forest/25 underline-offset-4 hover:decoration-forest" href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines" target="_blank" rel="noopener noreferrer">Diretrizes AHA 2025</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="fixed inset-x-0 bottom-0 z-50 border-t border-red-100 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(23,33,30,0.08)] backdrop-blur sm:hidden safe-bottom">
+    <a href="tel:192" class="flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-rescue px-5 text-base font-bold text-white shadow-lg shadow-red-900/20 active:scale-[0.99]" aria-label="Ligar agora para o SAMU no número 192">
+      <span class="h-2.5 w-2.5 animate-pulse rounded-full bg-white" aria-hidden="true"></span>
+      Emergência: ligar 192
+    </a>
+  </div>
+
+  <footer class="border-t border-slate-200 bg-white px-5 py-8 text-center text-xs leading-relaxed text-slate-500">
+    Conteúdo educativo de apoio. Em caso de dúvida ou urgência, acione o SAMU pelo 192.<br>
+    <span class="mt-1 inline-block">Revisado com referências disponíveis em agosto de 2026.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
