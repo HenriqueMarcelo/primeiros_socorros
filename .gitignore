@@ -1,0 +1,7 @@
+# Servidor usado apenas para testes na rede local
+server.js
+
+# Dependências e arquivos do sistema
+node_modules/
+.DS_Store
+Thumbs.db
